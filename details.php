@@ -2,7 +2,7 @@
 
 class Module_Metrics extends Module {
 
-	public $version = '0.9.0';
+	public $version = '0.9.1';
 
 	public function info()
 	{

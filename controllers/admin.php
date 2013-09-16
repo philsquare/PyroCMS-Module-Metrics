@@ -26,7 +26,7 @@ class Admin extends Admin_Controller
 		// Load lang
         $this->lang->load('metrics');
 
-		$this->load->helper(array('standard', 'chart'));
+		$this->load->helper('chart');
 
 		// Load assets
 		Asset::css('module::admin.css');
