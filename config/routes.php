@@ -21,4 +21,5 @@
 */
 
 // admin
+$route['metrics/admin/ips(/:any)?'] = 'admin_ips/index$1';
 $route['metrics/admin(/:any)?'] = 'admin$1';

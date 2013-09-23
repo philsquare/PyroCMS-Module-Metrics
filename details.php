@@ -25,7 +25,7 @@ class Module_Metrics extends Module {
 				),
 				'ips' => array(
 					'name' => 'metrics:ips:title',
-					'uri' => 'admin/ips',
+					'uri' => 'admin/metrics/ips',
 					'class' => ''
 				)
 			),
