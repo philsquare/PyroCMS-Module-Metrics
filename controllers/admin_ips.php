@@ -46,6 +46,6 @@ class Admin_ips extends Admin_Controller
 			'columns' => array('created', 'ip', 'uri')
 		);
 		
-		$this->streams->cp->entries_table('ips', 'metrics', 20, 'admin/metrics/ips', true, $extra);
+		$this->streams->cp->entries_table('ips', 'metrics', Settings::get('records_per_page'), 'admin/metrics/ips', true, $extra);
 	}
 }
