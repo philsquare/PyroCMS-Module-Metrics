@@ -15,19 +15,16 @@ class Events_Metrics {
     {
         $this->ci =& get_instance();
         
-        Events::register('admin_controller', array($this, 'hello'));
-
-		Events::register('whatever', array($this, 'custom'));
+        Events::register('public_controller', array($this, 'track'));
     }
     
-    public function hello()
+    public function track()
     {
-		// Hi There
+		// IPs
+		$ip = $this->ci->input->ip_address();
+		$uri = $this->ci->uri->uri_string();
+		
+		$this->ci->streams->entries->insert_entry(array('ip' => $ip, 'uri' => $uri), 'ips', 'metrics');
     }
-
-	public function custom()
-	{
-		// Custom trigger set with Events::trigger('whatever')
-	}
 }
 /* End of file events.php */
