@@ -2,7 +2,7 @@
 
 class Module_Metrics extends Module {
 
-	public $version = '0.9.1';
+	public $version = '0.9.2';
 
 	public function info()
 	{
@@ -22,6 +22,11 @@ class Module_Metrics extends Module {
 					'name' => 'metrics:metrics:title',
 					'uri' => 'admin/metrics',
 					'class' => ''
+				),
+				'ips' => array(
+					'name' => 'metrics:ips:title',
+					'uri' => 'admin/ips',
+					'class' => ''
 				)
 			),
 			'roles' => array(
@@ -33,7 +38,39 @@ class Module_Metrics extends Module {
 	}
 
 	public function install()
-	{		
+	{
+		$this->load->driver('streams');
+		
+		// Add Video Stream
+		if(!$this->streams->streams->add_stream('IPs', 'ips', 'metrics', 'metrics_', 'List of IPs that have visited the website.')) return false;
+		
+		$fields = array(
+			array(
+				'name' => 'IP',
+				'slug' => 'ip',
+				'namespace' => 'metrics',
+				'type' => 'text',
+				'extra' => array('max_length' => 45),
+				'assign' => 'ips',
+				'title_column' => true,
+				'required' => true,
+				'unique' => true,
+			),
+			array(
+				'name' => 'URI',
+				'slug' => 'uri',
+				'namespace' => 'metrics',
+				'type' => 'text',
+				'extra' => array('max_length' => 255),
+				'assign' => 'ips',
+				'title_column' => false,
+				'required' => true,
+				'unique' => false
+			)
+		);
+		
+		$this->streams->fields->add_fields($fields);
+		
 		return true;
 	}
 
